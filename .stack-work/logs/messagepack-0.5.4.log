@@ -1,0 +1,7 @@
+Configuring messagepack-0.5.4...
+Preprocessing library for messagepack-0.5.4..
+Building library for messagepack-0.5.4..
+[1 of 2] Compiling Data.MessagePack.Spec ( Data/MessagePack/Spec.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/Data/MessagePack/Spec.o )
+[2 of 2] Compiling Data.MessagePack ( Data/MessagePack.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/Data/MessagePack.o )
+Installing library in /home/zachchurchill/.stack/snapshots/x86_64-linux/lts-12.26/8.4.4/lib/x86_64-linux-ghc-8.4.4/messagepack-0.5.4-JnZ9tUg4hCPBAmanrYAsTw
+Registering library for messagepack-0.5.4..

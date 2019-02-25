@@ -1,0 +1,6 @@
+Configuring io-storage-0.3...
+Preprocessing library for io-storage-0.3..
+Building library for io-storage-0.3..
+[1 of 1] Compiling System.IO.Storage ( System/IO/Storage.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/System/IO/Storage.o )
+Installing library in /home/zachchurchill/.stack/snapshots/x86_64-linux/lts-12.26/8.4.4/lib/x86_64-linux-ghc-8.4.4/io-storage-0.3-JSTM5Jbimc33ffGojDwBxE
+Registering library for io-storage-0.3..

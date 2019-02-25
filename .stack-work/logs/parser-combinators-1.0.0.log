@@ -1,0 +1,11 @@
+Configuring parser-combinators-1.0.0...
+Preprocessing library for parser-combinators-1.0.0..
+Building library for parser-combinators-1.0.0..
+[1 of 6] Compiling Control.Applicative.Combinators ( Control/Applicative/Combinators.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/Control/Applicative/Combinators.o )
+[2 of 6] Compiling Control.Applicative.Combinators.NonEmpty ( Control/Applicative/Combinators/NonEmpty.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/Control/Applicative/Combinators/NonEmpty.o )
+[3 of 6] Compiling Control.Applicative.Permutations ( Control/Applicative/Permutations.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/Control/Applicative/Permutations.o )
+[4 of 6] Compiling Control.Monad.Combinators ( Control/Monad/Combinators.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/Control/Monad/Combinators.o )
+[5 of 6] Compiling Control.Monad.Combinators.Expr ( Control/Monad/Combinators/Expr.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/Control/Monad/Combinators/Expr.o )
+[6 of 6] Compiling Control.Monad.Combinators.NonEmpty ( Control/Monad/Combinators/NonEmpty.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/Control/Monad/Combinators/NonEmpty.o )
+Installing library in /home/zachchurchill/.stack/snapshots/x86_64-linux/lts-12.26/8.4.4/lib/x86_64-linux-ghc-8.4.4/parser-combinators-1.0.0-FkDIkMqlFRy3ywBA26Y9ci
+Registering library for parser-combinators-1.0.0..

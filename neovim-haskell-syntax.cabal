@@ -1,0 +1,27 @@
+name:                neovim-haskell-syntax
+version:             0.1.0.0
+synopsis:            Haskell Neovim plugins
+description:         Haskell syntax highlighting in neovim using haskell
+-- Take a license that you like. Only relevant if you want to make your config
+-- used by other people.
+license:             BSD3
+-- license-file:        LICENSE
+author:              Zachary Churchill
+maintainer:          zacharyachurchill@gmail.com
+copyright:           2019 Zachary Churchill
+category:            Neovim
+build-type:          Simple
+--extra-source-files:  README.md
+cabal-version:       >=1.10
+
+executable neovim-haskell-syntax
+  main-is:             nvim.hs
+  hs-source-dirs:      ., lib
+  other-modules:       Neovim.Example.Plugin
+                     , Neovim.Example.Plugin.Fibonacci
+                     , Neovim.Example.Plugin.Random
+  build-depends:       base >= 4.7 && < 5
+                     , nvim-hs >= 1 && < 2
+                     , ghc-syntax-highlighter
+                     , text
+  default-language:    Haskell2010

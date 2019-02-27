@@ -1,5 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
-module Neovim.Example.Plugin.Random where
+module Neovim.Plugin.Syntax where
 
 import Neovim
 import Neovim.API.String
@@ -11,9 +11,9 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as T
 
 data NVIMLOC = NVIMLOC
-  { nvimLocLine :: Int64
+  { nvimLocLine      :: Int64
   , nvimLocCol_start :: Int64
-  , nvimLocCol_end :: Int64
+  , nvimLocCol_end   :: Int64
   } deriving Show
 
 convertLoc :: Loc -> NVIMLOC
@@ -33,8 +33,9 @@ stringTok = do
       tokens = fromMaybe (error $ "could not tokenize " <> show contents) $ tokenizeHaskellLoc $ T.pack $ unlines contents
       tokens' = filter (\(x, _) -> x == StringTok) tokens
       tokenLocs = fmap (convertLoc . snd) tokens'
-  mapM_ (highlight buff ns) tokenLocs
-  -- mapM_ (delete buff) tokenLocs
+  mapM (highlight buff ns) tokenLocs
+  -- mapM (delete buff) tokenLocs
+  pure ()
   where
   highlight bf ns' (NVIMLOC ls cs ce) = nvim_buf_add_highlight' bf ns' "String" ls cs ce
   delete bf (NVIMLOC ls _ _) = nvim_buf_set_lines' bf (ls) (ls+1) False [mempty]

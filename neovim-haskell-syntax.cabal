@@ -16,10 +16,9 @@ cabal-version:       >=1.10
 
 executable neovim-haskell-syntax
   main-is:             nvim.hs
-  hs-source-dirs:      ., lib
-  other-modules:       Neovim.Example.Plugin
-                     , Neovim.Example.Plugin.Fibonacci
-                     , Neovim.Example.Plugin.Random
+  hs-source-dirs:      ., src
+  other-modules:       Neovim.Plugin
+                     , Neovim.Plugin.Syntax
   build-depends:       base >= 4.7 && < 5
                      , nvim-hs >= 1 && < 2
                      , ghc-syntax-highlighter

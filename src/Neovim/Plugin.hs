@@ -1,13 +1,13 @@
 {-# LANGUAGE TemplateHaskell #-}
 -- Template Haskell is used to remove a lot of manual boiler-plate from
 -- declaring the functions you want to export.
-module Neovim.Example.Plugin
+module Neovim.Plugin
     ( plugin
     ) where
 
 import Neovim
 
-import Neovim.Example.Plugin.Random 
+import Neovim.Plugin.Syntax
 
 plugin :: Neovim (StartupConfig NeovimConfig) NeovimPlugin
 plugin = do

@@ -1,0 +1,4 @@
+packages: ./
+
+package neovim-haskell-syntax
+  optimization: True

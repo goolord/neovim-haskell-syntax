@@ -17,10 +17,17 @@ cabal-version:       >=1.10
 executable neovim-haskell-syntax
   main-is:             nvim.hs
   hs-source-dirs:      ., src
+  ghc-options:         -O2
   other-modules:       Neovim.Plugin
                      , Neovim.Plugin.Syntax
+                     , Neovim.API.Text
+                     , Neovim.API.THT
   build-depends:       base >= 4.7 && < 5
                      , nvim-hs >= 1 && < 2
                      , ghc-syntax-highlighter
+                     -- API
                      , text
+                     , containers
+                     , vector
+                     , template-haskell
   default-language:    Haskell2010

@@ -12,10 +12,21 @@ import Neovim.Plugin.Syntax
 plugin :: Neovim (StartupConfig NeovimConfig) NeovimPlugin
 plugin = do
     -- randomPluginState <- randomNumbers
+    namespace <- NameSpace 
+      <$> nvim_create_namespace' "haskellKeyword"
+      <*> nvim_create_namespace' "haskellPragma"
+      <*> nvim_create_namespace' "haskellVariable"
+      <*> nvim_create_namespace' "haskellSymbol"
+      <*> nvim_create_namespace' "haskellConstructor"
+      <*> nvim_create_namespace' "haskellOperator"
+      <*> nvim_create_namespace' "haskellChar"
+      <*> nvim_create_namespace' "haskellString"
+      <*> nvim_create_namespace' "haskellInteger"
+      <*> nvim_create_namespace' "haskellRational"
+      <*> nvim_create_namespace' "haskellComment"
     wrapPlugin Plugin
-        { environment = ()
+        { environment = namespace
         , exports =
-            [ $(function' 'stringTok) Async
-            , $(function' 'test) Async
+            [ $(function' 'tokenizeHaskell) Async
             ]
         }

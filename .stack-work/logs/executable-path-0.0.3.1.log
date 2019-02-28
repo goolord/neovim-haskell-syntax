@@ -1,7 +1,0 @@
-Configuring executable-path-0.0.3.1...
-Preprocessing library for executable-path-0.0.3.1..
-Building library for executable-path-0.0.3.1..
-[1 of 2] Compiling System.Environment.Executable.Linux ( System/Environment/Executable/Linux.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/System/Environment/Executable/Linux.o )
-[2 of 2] Compiling System.Environment.Executable ( System/Environment/Executable.hs, .stack-work/dist/x86_64-linux/Cabal-2.2.0.1/build/System/Environment/Executable.o )
-Installing library in /home/zachchurchill/.stack/snapshots/x86_64-linux/lts-12.26/8.4.4/lib/x86_64-linux-ghc-8.4.4/executable-path-0.0.3.1-HAUXy7yynGAqn9mH431ik
-Registering library for executable-path-0.0.3.1..

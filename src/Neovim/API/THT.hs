@@ -17,13 +17,13 @@ that was used when this package was compiled.
 -}
 module Neovim.API.THT where
 
-import Neovim.API.TH
 import Data.Map.Strict (Map)
-import qualified Data.Map.Strict as Map
-import Language.Haskell.TH
-import Data.Vector (Vector)
-import qualified Data.Vector as V
 import Data.Text (Text)
+import Data.Vector (Vector)
+import Language.Haskell.TH
+import Neovim.API.TH
+import qualified Data.Map.Strict as Map
+import qualified Data.Vector as V
 
 -- | Default type mappings for the requested API.
 typeMap :: Map String (Q Type)

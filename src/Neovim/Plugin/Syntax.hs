@@ -43,7 +43,6 @@ encodeToken x = case x of
   IntegerTok     -> "Number"
   RationalTok    -> "Float"
   CommentTok     -> "Comment"
-  LabelTok       -> "Identifier"
   SpaceTok       -> ""
   OtherTok       -> ""
 
@@ -60,7 +59,6 @@ tokenFunc x = case x of
   IntegerTok     -> haskellInteger
   RationalTok    -> haskellRational
   CommentTok     -> haskellComment
-  LabelTok       -> haskellLabel
   SpaceTok       -> const (-1)
   OtherTok       -> const (-1)
 
@@ -76,7 +74,6 @@ data NameSpace = NameSpace
   , haskellInteger     :: Int64
   , haskellRational    :: Int64
   , haskellComment     :: Int64
-  , haskellLabel       :: Int64
   }
 
 tokenizeHaskell :: Neovim NameSpace ()

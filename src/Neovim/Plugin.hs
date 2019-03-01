@@ -24,7 +24,6 @@ plugin = do
       <*> nvim_create_namespace' "haskellInteger"
       <*> nvim_create_namespace' "haskellRational"
       <*> nvim_create_namespace' "haskellComment"
-      <*> nvim_create_namespace' "haskellLabel"
     wrapPlugin Plugin
         { environment = namespace
         , exports =

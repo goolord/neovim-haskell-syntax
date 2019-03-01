@@ -1,6 +1,6 @@
-{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# OPTIONS_GHC -Wall -Werror  #-}
 
 module Neovim.Plugin.Syntax where
 
@@ -8,12 +8,10 @@ module Neovim.Plugin.Syntax where
 import Neovim.API.Text
 import Neovim.API.TH
 import Neovim.Context
-import Data.Either
 import GHC.SyntaxHighlighter
 import Data.Maybe
 import Control.Arrow (first)
 import qualified Data.Text as T
-import qualified Data.Text.Encoding as T
 
 data NVIMLOC = NVIMLOC
   { nvimLocLine      :: Int64
@@ -24,7 +22,7 @@ data NVIMLOC = NVIMLOC
   } deriving Show
 
 convertLoc :: ((Token, Int64), Loc) -> NVIMLOC
-convertLoc ((tok, ns), (Loc lineStart colStart lineEnd colEnd)) = 
+convertLoc ((tok, ns), (Loc lineStart colStart _lineEnd colEnd)) = 
   NVIMLOC 
     (fromIntegral $ lineStart - 1)
     (fromIntegral $ colStart - 1) 
@@ -32,11 +30,12 @@ convertLoc ((tok, ns), (Loc lineStart colStart lineEnd colEnd)) =
     ns
     tok
 
+encodeToken :: Token -> T.Text
 encodeToken x = case x of
   KeywordTok     -> "Keyword"
   PragmaTok      -> "SpecialComment"
   SymbolTok      -> "Special"
-  VariableTok    -> "Identifier"
+  VariableTok    -> ""
   ConstructorTok -> "Type"
   OperatorTok    -> "Operator"
   CharTok        -> "Character"
@@ -44,6 +43,7 @@ encodeToken x = case x of
   IntegerTok     -> "Number"
   RationalTok    -> "Float"
   CommentTok     -> "Comment"
+  LabelTok       -> "Identifier"
   SpaceTok       -> ""
   OtherTok       -> ""
 
@@ -60,6 +60,7 @@ tokenFunc x = case x of
   IntegerTok     -> haskellInteger
   RationalTok    -> haskellRational
   CommentTok     -> haskellComment
+  LabelTok       -> haskellLabel
   SpaceTok       -> const (-1)
   OtherTok       -> const (-1)
 
@@ -75,6 +76,7 @@ data NameSpace = NameSpace
   , haskellInteger     :: Int64
   , haskellRational    :: Int64
   , haskellComment     :: Int64
+  , haskellLabel       :: Int64
   }
 
 tokenizeHaskell :: Neovim NameSpace ()
@@ -89,8 +91,7 @@ tokenizeHaskell = do
                  tokenizeHaskellLoc $ T.unlines contents
       tokens' = fmap (first (\x -> (x, tokenFunc x namespace))) tokens
       tokenLocs = fmap convertLoc tokens'
-  mapM (highlight buff) tokenLocs
-  pure ()
+  mapM_ (highlight buff) tokenLocs
   where
   highlight bf (NVIMLOC ls cs ce ns tok) = nvim_buf_add_highlight' bf ns (encodeToken tok) ls cs ce
 

@@ -2,3 +2,9 @@ packages: ./
 
 package neovim-haskell-syntax
   optimization: True
+
+source-repository-package
+    type: git
+    location: https://github.com/goolord/ghc-syntax-highlighter
+    tag: e4b48cbc78cb35a0e6ad4801586084371882a490
+

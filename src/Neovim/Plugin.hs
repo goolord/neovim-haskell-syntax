@@ -24,6 +24,14 @@ plugin = do
       <*> nvim_create_namespace' "haskellInteger"
       <*> nvim_create_namespace' "haskellRational"
       <*> nvim_create_namespace' "haskellComment"
+    Just (Right _) <- addAutocmd 
+      "TextChanged,TexChangedI" 
+      (AutocmdOptions {
+        acmdPattern = "*"
+        acmdNested = False
+        acmdGroup = Nothing
+      })
+      tokenizeHaskell
     wrapPlugin Plugin
         { environment = namespace
         , exports =

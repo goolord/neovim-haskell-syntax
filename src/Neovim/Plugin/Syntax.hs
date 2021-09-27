@@ -4,14 +4,14 @@
 
 module Neovim.Plugin.Syntax where
 
--- import Neovim
-import Neovim.API.Text
-import Neovim.API.TH
-import Neovim.Context
-import GHC.SyntaxHighlighter
-import Data.Maybe
 import Control.Arrow (first)
+import Data.Foldable (fold)
+import Data.Maybe ( fromMaybe )
+import GHC.SyntaxHighlighter ( Token(..), Loc(..), tokenizeHaskellLoc )
+import Neovim
+import Neovim.API.Text
 import qualified Data.Text as T
+import qualified Data.Vector as V
 
 data NVIMLOC = NVIMLOC
   { nvimLocLine      :: Int64
@@ -76,19 +76,24 @@ data NameSpace = NameSpace
   , haskellComment     :: Int64
   }
 
-tokenizeHaskell :: Neovim NameSpace ()
-tokenizeHaskell = do
-  buff <- nvim_get_current_buf'
-  lc <- buffer_line_count' buff
+nvimTokenizeHaskell :: Neovim NameSpace ()
+nvimTokenizeHaskell = do
+  buff <- nvim_get_current_buf
+  lc <- buffer_line_count buff
   namespace <- ask
-  contents <- nvim_buf_get_lines' buff 0 lc True
+  contents <- nvim_buf_get_lines buff 0 lc True
   let tokens :: [(Token, Loc)]
       tokens = fromMaybe 
                  (error $ "Could not tokenize: " <> show contents) $ 
-                 tokenizeHaskellLoc $ T.unlines contents
+                 tokenizeHaskellLoc $ vunlines contents
       tokens' = fmap (first (\x -> (x, tokenFunc x namespace))) tokens
       tokenLocs = fmap convertLoc tokens'
   mapM_ (highlight buff) tokenLocs
   where
-  highlight bf (NVIMLOC ls cs ce ns tok) = nvim_buf_add_highlight' bf ns (encodeToken tok) ls cs ce
+  highlight bf (NVIMLOC ls cs ce ns tok) = nvim_buf_add_highlight bf ns (encodeToken tok) ls cs ce
 
+handler :: a
+handler = undefined
+
+vunlines :: V.Vector T.Text -> T.Text
+vunlines = fold . V.map (`T.snoc` '\n')
